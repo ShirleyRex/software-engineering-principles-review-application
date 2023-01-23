@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  :root {
+    /* Colors */
+    --primary-color: 255 125 26;
+    --secondary-color: 29 32 37;
+    --neutral-dark-gray: 104 112 125;
+    --neutral-gray: 208 212 222;
+    --light-gray: 247 248 253;
+
+    /* Typography */
+    --lf-line-height: 120%; /* Large font lineheight */
+    --sf-line-height: 150%; /* small font lineheight */
+    --base-size: 0.8rem;
+    --type-scale: 1.05;
+    --fixed-type: 1.25;
+    --h5: calc(0.6rem * var(--type-scale));
+    --main-text: calc(var(--base-size) * var(--type-scale));
+    --intro-text: calc(var(--main-text) * var(--fixed-type));
+    --h4: calc(var(--intro-text) * var(--fixed-type));
+    --h3: calc(var(--h4) * var(--fixed-type));
+    --h2: calc(var(--h3) * var(--fixed-type));
+    --h1: calc(var(--h2) * var(--fixed-type));
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .search-form input:focus {
+    outline: none;
+  }
+
+  .modal.show-modal {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    box-shadow: 0 2.5px 5px rgba(104, 112, 125, 0.3);
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: none;
+    display: grid;
+    place-content: center;
+    position: relative;
+  } 
+
+  input[type="checkbox"]::before {
+    content: "";
+    position: relative;
+    z-index: 1;
+    width: 1.15em;
+    height: 1.15em;
+    transition: 120ms background-color ease-in-out;
+    -moz-transition: 120ms background-color ease-in-out;
+    -webkit-transition: 120ms background-color ease-in-out;
+    box-shadow: inset 1.15em 1.15em white;
+    background-color: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    margin: -1px;
+    width: 1.25em;
+    height: 1.25em;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    box-shadow: inset 1.15em 1.15em rgb(8, 8, 8), 
+                inset -1.15em -1.15em rgb(8, 8, 8);
+  }
+
+  input[type="checkbox"]:checked::before {
+    box-shadow: inset 1em 1em theme('colors.primary');
+    background-color: theme('colors.primary');
+  }
+
+  @media screen and (min-width: 600px) {
+    :root {
+      --type-scale: 1.15;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+
+    .login-form-wrapper,
+    .register-form-wrapper {
+      box-shadow: 0 5px 10px theme('colors.secondary / 0.15');
+      height: 100%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    :root {
+      --type-scale: 1.25;
+    }
+
+    .container {
+      max-width: 960px;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+
+  @media only screen and (min-width: 1440px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@tailwind components;
+
+@layer components {
+  .avatar-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .profile-detail {
+    display: grid;
+    grid-template-columns: 25% 1fr;
+    -ms-grid-columns: 25% 1fr;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .avatar-container img {
+      width: 250px;
+      height: 200px;
+    }
+  }
+}

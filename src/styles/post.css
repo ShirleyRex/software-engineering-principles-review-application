@@ -1,0 +1,16 @@
+@tailwind components;
+
+@layer components {
+  .main-content > section {
+    display: grid;
+    gap: 3rem 6rem;
+    grid-gap: 3rem 6rem;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .main-content > section {
+      grid-template-columns: auto 1fr;
+      -ms-grid-columns: auto 1fr;
+    }
+  }
+}
