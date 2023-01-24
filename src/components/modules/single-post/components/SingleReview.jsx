@@ -1,19 +1,28 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { dateFormat } from '../../../../utils/format';
 import { Button } from '../../../ui';
 import { updateDocArr } from '../../../../application/firebase/services';
 import { generateId } from '../../../../utils/generate';
+import { NotifyContainer, notify } from '../../../lib/notify';
 
 const SingleReview = ({ id, name, rating, timestamp, comments, replies }) => {
 	const [reply, setReply] = useState('');
-	const [threads, setThreads] = useState([...replies]);
+	const [threads, setThreads] = useState([]);
 
 	let replyRefContainer = useRef(null);
 	let replyFormRef = useRef(null);
 
+	useEffect(() => {
+		setThreads([...replies]);
+	}, []);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (reply === '') {
+			notify('You can not submit an empty reply', 'error');
+			return;
+		}
 
 		const data = { text: reply, id: generateId(), timestamp: String(Date.now()) };
 
@@ -22,6 +31,7 @@ const SingleReview = ({ id, name, rating, timestamp, comments, replies }) => {
 		if (response.success) {
 			setThreads((prevVal) => [...prevVal, data]);
 			replyRefContainer.style.height = 0;
+			setReply('');
 		}
 	};
 
@@ -122,6 +132,7 @@ const SingleReview = ({ id, name, rating, timestamp, comments, replies }) => {
 			) : (
 				''
 			)}
+			<NotifyContainer />
 		</article>
 	);
 };

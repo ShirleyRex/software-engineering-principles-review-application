@@ -40,7 +40,7 @@ const NavBar = ({ user }) => {
 							<path fill="#000" d="M0 0h19v2.5H0V0Zm0 6.25h19v2.5H0v-2.5Zm0 6.25h19V15H0v-2.5Z" />
 						</svg>
 					</button>
-					<Link>
+					<Link to='/'>
 						<img src={ require('../../../images/logo-sep-project.jpg') } alt="Brand logo" />
 					</Link>
 				</div>

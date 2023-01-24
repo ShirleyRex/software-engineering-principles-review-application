@@ -27,7 +27,7 @@ const Home = () => {
 	}, [posts]);
 
 	const onSearch = (value) => {
-		const newLocations = posts.filter((item) => item.title.includes(value));
+		const newLocations = posts.filter((item) => item.title.toLowerCase().includes(value.toLowerCase()));
 		setLocations(newLocations);
 	};
 
